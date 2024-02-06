@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import { inqueryValidation } from './validation'
+import { useNetwork } from '../utils/useNetwork'
+import axios from 'axios'
+
 const Contact = () => {
+  const [loading, setLoading]=useState(false)
+  const [status, setStatus]=useState('Submit')
+  const [response , setResponse]=useState(null)
+  const [error , setError]=useState(false)
   const formik = useFormik({
     initialValues:{
       name:'',
@@ -9,8 +16,37 @@ const Contact = () => {
       message:''
     },
     validationSchema:inqueryValidation,
-    onSubmit:(values)=>{
-      alert("Form submitted")
+    onSubmit: async (values) => {
+
+      const controller = new AbortController();
+      const signal = controller.signal;
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+      try {
+
+        setLoading(true)
+        setStatus("Please wait ....")
+        const response = await useNetwork("post", "services/email", values, { headers: { "Content-Type": "application/json" }, signal: signal })
+        setResponse(response?.data?.message)
+        formik.resetForm()
+
+      } catch (error) {
+        setError(true)
+        console.log(error)
+        if (error?.code === 'ERR_CANCELED') {
+          setResponse("Request timeout please try again ")
+        }
+
+
+      } finally {
+        clearTimeout(timeoutId)
+        setLoading(false)
+        setStatus("Submit")
+        setTimeout(() => {
+          setResponse(null)
+          setError(false)
+        }, 3000)
+      }
     }
 
   })
@@ -52,7 +88,9 @@ const Contact = () => {
                  onBlur={formik.handleBlur}
                  ></textarea> 
                  {formik.errors.message && formik.touched.message ? <span className='text-red-700'>{formik.errors.message}</span> : null}
-                <button type='submit' className='bg-ctaColor p-2 rounded-md text-white uppercase' onClick={formik.handleSubmit}>Submit</button> 
+               
+                <button type='submit' className='bg-ctaColor p-2 rounded-md text-white uppercase disabled:bg-textColor' onClick={formik.handleSubmit} disabled={loading}>{status}</button> 
+                {response && <span className={`text-center ${error ? "text-red-700":"text-green-700"} text-md`}>{response}</span>}
             </form>
         </div>
   
