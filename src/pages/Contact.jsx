@@ -35,6 +35,11 @@ const Contact = () => {
         console.log(error)
         if (error?.code === 'ERR_CANCELED') {
           setResponse("Request timeout please try again ")
+          return
+        }
+
+        if(error){
+          setResponse("Something went wrong please try again")
         }
 
 
