@@ -5,18 +5,18 @@ const Navbar = () => {
     const[isOpen , setIsOpen]=useState(false)
 
     const navButton=[
-      <button type='button' className='uppercase font-semibold text-sm sm:text-lg' onClick={()=>{setIsOpen(false)}}><a href="#">Home</a></button>,
-      <button type='button' className='uppercase font-semibold text-sm sm:text-lg' onClick={()=>{setIsOpen(false)}} ><a href="#projects">Projects</a></button>,
-      <button type='button' className='uppercase font-semibold text-sm sm:text-lg' onClick={()=>{setIsOpen(false)}} ><a href="#about">About</a></button>,
-      <button type='button' className='uppercase font-semibold text-sm sm:text-lg' onClick={()=>{setIsOpen(false)}} ><a href="#contact">Contact</a></button>,
-      <button type='button' className='uppercase font-semibold text-sm sm:text-lg cursor-not-allowed' onClick={()=>{setIsOpen(false)}} disabled={true}>Blog</button>
+      <button type='button' className='uppercase font-semibold text-sm sm:text-lg hover:text-ctaColor' onClick={()=>{setIsOpen(false)}}><a href="#">Home</a></button>,
+      <button type='button' className='uppercase font-semibold text-sm sm:text-lg hover:text-ctaColor' onClick={()=>{setIsOpen(false)}} ><a href="#projects">Projects</a></button>,
+      <button type='button' className='uppercase font-semibold text-sm sm:text-lg hover:text-ctaColor' onClick={()=>{setIsOpen(false)}} ><a href="#about">About</a></button>,
+      <button type='button' className='uppercase font-semibold text-sm sm:text-lg hover:text-ctaColor' onClick={()=>{setIsOpen(false)}} ><a href="#contact">Contact</a></button>,
+      <button type='button' className='uppercase font-semibold text-sm sm:text-lg hover:text-ctaColor cursor-not-allowed' onClick={()=>{setIsOpen(false)}} disabled={true}>Blog</button>
 
     ]
   return (
     <>
         <nav className='flex fixed justify-center items-center  w-full  p-2 bg-[#EDF1FD] shadow-lg'>
             <div className='flex justify-between items-center max-w-[1440px] w-full py-3'>
-                <h1 className='text-ctaColor font-bold uppercase text-2xl '><a href="#">Gaurav</a></h1>
+            <a href="#"> <h1 className='text-ctaColor font-bold uppercase text-2xl '>Gaurav</h1></a>
                 <div className='flex'>
                         <div className='text-textColor gap-10 xl:gap-14 2xl:gap-20 hidden sm:flex'>
                         {navButton?.map((navBtn, index)=>{
