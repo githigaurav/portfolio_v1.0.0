@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
         <nav className='flex fixed justify-center items-center  w-full  p-2 bg-[#EDF1FD] shadow-lg'>
             <div className='flex justify-between items-center max-w-[1440px] w-full py-3'>
-                <Link to="/"><h1 className='text-ctaColor font-bold uppercase text-2xl '>Gaurav</h1></Link>
+                <h1 className='text-ctaColor font-bold uppercase text-2xl '><a href="#">Gaurav</a></h1>
                 <div className='flex'>
                         <div className='text-textColor gap-10 xl:gap-14 2xl:gap-20 hidden sm:flex'>
                         {navButton?.map((navBtn, index)=>{
