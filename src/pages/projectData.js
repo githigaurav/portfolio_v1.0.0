@@ -19,7 +19,15 @@ const data =[
         projectLink:"https://currencyconverter-gold.vercel.app/",
         desktopView:"./currencyDesktop.png",
         mobileView:"./currencyMob.png"
-    },   
+    }, 
+    {
+        projectName:"SparkleForge",
+        discription:"sparkleforge is a real-time collaborative drawing and whiteboarding app that lets you create, draw, and annotate together with others remotely.",
+        projectLink:"https://sparkleforge.vercel.app/",
+        desktopView:"./sparkleforge.png",
+        mobileView:"./sparkleforgeMob.png"
+    }, 
+     
 ]
 
 export default data;
